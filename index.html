@@ -7,11 +7,18 @@
         <style type="text/css">
             html, body {height: 100%; margin: 0; padding: 0;}
             #map {height: 100%;}
+            .float {position: absolute; top: 50px; left: 10px; z-index: 1;}
         </style>
         <script src="js/jquery-1.11.3.min.js"></script>
         <script src="js/knockout-3.4.0.js"></script>
     </head>
     <body>
+        <div class="float">
+            <input placeholder="Search…" type="search" autocomplete="off">
+            <ul data-bind="foreach: markers">
+                <li data-bind="text: name"></li>
+            </ul>
+        </div>
         <div id='map'></div>
         <script src="js/app.js"></script>
         <script async defer 
