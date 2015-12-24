@@ -14,9 +14,9 @@
     </head>
     <body>
         <div class="float">
-            <input placeholder="Search…" type="search" autocomplete="off">
+            <input placeholder="Search…" type="search" autocomplete="off" data-bind="value: searchValue">
             <ul data-bind="foreach: markers">
-                <li data-bind="text: name"></li>
+                <li data-bind="text: name, visible: ifDisplay"></li>
             </ul>
         </div>
         <div id='map'></div>
