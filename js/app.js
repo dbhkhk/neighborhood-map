@@ -33,6 +33,13 @@ var markerData = [
     ifDisplay: true
 }
 ];
+var markerData2 = [];
+var populateMarkerData2 = function() {
+    for (var x in markerData) {
+        markerData2.push(markerData[x]);
+    }
+};
+populateMarkerData2();
 
 function initMap(){
     map = new google.maps.Map(document.getElementById('map'), {
@@ -54,8 +61,25 @@ function initMap(){
 
 var myViewModel = {
     // data
-    markers: ko.observableArray(markerData),
-    searchValue: ko.observable('')
+    markers: ko.observableArray(markerData2),
+    searchValue: ko.observable(''),
+
+    // operations
+    search: function(value) {
+        //remove all the current markers, which removes them from the view
+        myViewModel.markers.removeAll();
+
+        // toggleAllOff();
+
+        for (var x in markerData) {
+            console.log(markerData[x].name.toLowerCase());
+            if (markerData[x].name.toLowerCase().indexOf(value.toLowerCase()) >= 0) {
+                myViewModel.markers.push(markerData[x]);
+            }
+        }
+    }
 };
 
 ko.applyBindings(myViewModel);
+
+myViewModel.searchValue.subscribe(myViewModel.search);
