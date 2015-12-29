@@ -52,11 +52,10 @@ function initMap(){
 
 // function to toggle marker's visibility
 
-function myViewModel() {
+var myViewModel = {
     // data
-    var self = this;
-    self.markers = ko.observableArray(markerData);
-    self.searchValue = ko.observable('');
+    markers: ko.observableArray(markerData),
+    searchValue: ko.observable('')
 };
 
-ko.applyBindings(new myViewModel());
+ko.applyBindings(myViewModel);
