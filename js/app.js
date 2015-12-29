@@ -57,7 +57,20 @@ function initMap(){
     };
 }
 
-// function to toggle marker's visibility
+// functions to toggle marker's visibility
+var toggleOff = function(marker) {
+    marker.setMap(null);
+};
+
+var toggleOn = function(marker) {
+    marker.setMap(map);
+};
+
+var toggleOffAll = function() {
+    for (var x in markers) {
+        markers[x].setMap(null);
+    }
+};
 
 var myViewModel = {
     // data
@@ -68,8 +81,7 @@ var myViewModel = {
     search: function(value) {
         //remove all the current markers, which removes them from the view
         myViewModel.markers.removeAll();
-
-        // toggleAllOff();
+        toggleOffAll();
 
         for (var x in markerData) {
             if (markerData[x].name.toLowerCase().indexOf(value.toLowerCase()) >= 0) {
