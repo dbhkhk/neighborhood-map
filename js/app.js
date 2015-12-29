@@ -72,7 +72,6 @@ var myViewModel = {
         // toggleAllOff();
 
         for (var x in markerData) {
-            console.log(markerData[x].name.toLowerCase());
             if (markerData[x].name.toLowerCase().indexOf(value.toLowerCase()) >= 0) {
                 myViewModel.markers.push(markerData[x]);
             }
