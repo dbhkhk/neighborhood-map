@@ -86,6 +86,7 @@ var myViewModel = {
         for (var x in markerData) {
             if (markerData[x].name.toLowerCase().indexOf(value.toLowerCase()) >= 0) {
                 myViewModel.markers.push(markerData[x]);
+                toggleOn(markers[x]);
             }
         }
     }
