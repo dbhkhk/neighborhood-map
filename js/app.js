@@ -58,6 +58,7 @@ function initMap(){
         // use IIFE to deal with closure problem
         marker.addListener('click', (function(markerCopy){
             return function() {
+                closeInfoWindows();
                 infoWindow.open(map, markerCopy);
             };
         })(marker));
@@ -72,14 +73,19 @@ function initMap(){
 var toggleOff = function(marker) {
     marker.setMap(null);
 };
-
 var toggleOn = function(marker) {
     marker.setMap(map);
 };
-
 var toggleOffAll = function() {
     for (var x in markers) {
         markers[x].setMap(null);
+    }
+};
+
+// function to close all info windows
+var closeInfoWindows = function() {
+    for (var x in infoWindows) {
+        infoWindows[x].close();
     }
 };
 
@@ -98,6 +104,15 @@ var myViewModel = {
             if (markerData[x].name.toLowerCase().indexOf(value.toLowerCase()) >= 0) {
                 myViewModel.markers.push(markerData[x]);
                 toggleOn(markers[x]);
+            }
+        }
+    },
+    listClick: function(value) {
+        // close all info windows
+        closeInfoWindows();
+        for (var x in markerData) {
+            if (markerData[x].name.toLowerCase().indexOf(value.name.toLowerCase()) >= 0) {
+                infoWindows[x].open(map, markers[x]);
             }
         }
     }
