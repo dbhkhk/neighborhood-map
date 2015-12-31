@@ -42,11 +42,23 @@ function initMap(){
     });
 
     for (var i = 0; i < markerData.length; i++) {
+        // create marker
         var marker = new google.maps.Marker({
             position: markerData[i].position,
             map: map,
             title: markerData[i].name
         });
+
+        // add info window
+        var contentString = '<div>Hello</div>';
+        var infowindow = new google.maps.InfoWindow({
+            content: contentString
+        });
+        marker.addListener('click', function() {
+            infowindow.open(map, marker);
+        });
+
+        // push every marker into markers array
         markers.push(marker);
     };
 }
