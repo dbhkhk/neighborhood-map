@@ -1,5 +1,6 @@
 var map;
 var markers = [];
+var infoWindows = [];
 var myLatLng = {lat: 37.703383, lng: -122.472916};
 var markerData = [
 {
@@ -51,18 +52,19 @@ function initMap(){
 
         // add info window
         var contentString = '<div>Hello</div>';
-        var infowindow = new google.maps.InfoWindow({
+        var infoWindow = new google.maps.InfoWindow({
             content: contentString
         });
         // use IIFE to deal with closure problem
         marker.addListener('click', (function(markerCopy){
             return function() {
-                infowindow.open(map, markerCopy);
+                infoWindow.open(map, markerCopy);
             };
         })(marker));
 
         // push every marker into markers array
         markers.push(marker);
+        infoWindows.push(infoWindow);
     };
 }
 
