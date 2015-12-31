@@ -54,6 +54,7 @@ function initMap(){
         var infowindow = new google.maps.InfoWindow({
             content: contentString
         });
+        // use IIFE to deal with closure problem
         marker.addListener('click', (function(markerCopy){
             return function() {
                 infowindow.open(map, markerCopy);
