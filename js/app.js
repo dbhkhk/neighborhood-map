@@ -54,9 +54,11 @@ function initMap(){
         var infowindow = new google.maps.InfoWindow({
             content: contentString
         });
-        marker.addListener('click', function() {
-            infowindow.open(map, marker);
-        });
+        marker.addListener('click', (function(markerCopy){
+            return function() {
+                infowindow.open(map, markerCopy);
+            };
+        })(marker));
 
         // push every marker into markers array
         markers.push(marker);
