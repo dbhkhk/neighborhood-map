@@ -1,5 +1,7 @@
+// get OAuth_signature
+
 var httpMethod = 'GET',
-    url = 'https://api.yelp.com/v2/search/?term=boulevard cafe&location=Daly City, CA',
+    yelpURL = 'https://api.yelp.com/v2/search',
     parameters = {
         oauth_consumer_key : 'Yq5tVYmWeWxenLRN6gY-1g',
         oauth_token : 'iIhG_zwkm6hF77CXNNifSiohRlnmNfmZ',
@@ -11,7 +13,7 @@ var httpMethod = 'GET',
     consumerSecret = 'Tld3ffMZxbToWbQ0d4MFDfibtvc',
     tokenSecret = 'WvM7Wj_ZJ5tKl4Uimb_Q6FXFauM',
     // generates a RFC 3986 encoded, BASE64 encoded HMAC-SHA1 hash
-    encodedSignature = oauthSignature.generate(httpMethod, url, parameters, consumerSecret, tokenSecret),
+    encodedSignature = oauthSignature.generate(httpMethod, yelpURL, parameters, consumerSecret, tokenSecret),
     // generates a BASE64 encode HMAC-SHA1 hash
-    signature = oauthSignature.generate(httpMethod, url, parameters, consumerSecret, tokenSecret,
+    signature = oauthSignature.generate(httpMethod, yelpURL, parameters, consumerSecret, tokenSecret,
         { encodeSignature: false});
