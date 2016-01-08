@@ -43,10 +43,12 @@ var yelpURLWithKeys = yelpURL + '/?' + 'oauth_consumer_key=' + parameters.oauth_
     '&oauth_token=' + parameters.oauth_token + '&oauth_signature_method=' + parameters.oauth_signature_method +
     '&oauth_signature=' + encodedSignature + '&oauth_timestamp=' + parameters.oauth_timestamp +
     '&oauth_nonce=' + parameters.oauth_nonce;
-$.getJSON(yelpURLWithKeys, function(data){
-    console.log(data);
-}).error(function(){
-    console.log('Request failed');
+console.log(yelpURLWithKeys);
+$.ajax(yelpURLWithKeys, {
+    dataType: 'jsonp',
+    success: function(data){
+        console.log(data);
+    }
 });
 
 
