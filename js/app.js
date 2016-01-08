@@ -46,13 +46,12 @@ for (var x in markerData) {
             '&client_secret=3PFR1W2WZYV5RAP3TSCCYUOXIE5CJSKJSPPFBJUXQDFKORH2' +
             '&v=20160105';
 
-    $.getJSON(url, function(data){
-        console.log(data);
-        // IIFE
-        (function(xCopy){markerData[xCopy].foursquareData = data;})(x);
-        
-
-    }).error(function(){
+    $.getJSON(url, (function(xCopy){ // IIFE
+        return function(data) {
+            console.log(data);
+            markerData[xCopy].foursquareData = data;
+        }
+    })(x)).error(function(){
 
         console.log(markerData[x].name + ' getJSON error');
 
