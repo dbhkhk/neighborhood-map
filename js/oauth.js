@@ -1,7 +1,7 @@
 // get OAuth_signature
 
 var httpMethod = 'GET',
-    yelpURL = 'https://api.yelp.com/v2/search',
+    yelpURL = 'https://api.yelp.com/v2/business/boulevard-cafe-daly-city',
     parameters = {
         oauth_consumer_key : 'Yq5tVYmWeWxenLRN6gY-1g',
         oauth_token : 'iIhG_zwkm6hF77CXNNifSiohRlnmNfmZ',
