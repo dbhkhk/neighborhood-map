@@ -10,19 +10,23 @@ var markerData = [
 },
 {
     name: '76',
-    position: {lat: 37.703646, lng: -122.475802}
+    position: {lat: 37.703646, lng: -122.475802},
+    foursquareID: '4b74e8e7f964a520b6f72de3'
 },
 {
     name: 'Kome Buffet',
-    position: {lat: 37.702610, lng: -122.470373}
+    position: {lat: 37.702610, lng: -122.470373},
+    foursquareID: '4b2d94d3f964a52031d924e3'
 },
 {
     name: 'Westlake Coffee Shop',
-    position: {lat: 37.702359, lng: -122.470520}
+    position: {lat: 37.702359, lng: -122.470520},
+    foursquareID: '531288f7498e077a666756fe'
 },
 {
     name: 'Century 20 Daly City and XD',
-    position: {lat: 37.702155, lng: -122.470354}
+    position: {lat: 37.702155, lng: -122.470354},
+    foursquareID: '4a10653af964a520b8761fe3'
 }
 ];
 var markerData2 = [];
