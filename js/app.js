@@ -48,9 +48,14 @@ for (var x in markerData) {
 
     $.getJSON(url, function(data){
         console.log(data);
-        markerData[x].foursquareData = data;
+        // IIFE
+        (function(xCopy){markerData[xCopy].foursquareData = data;})(x);
+        
+
     }).error(function(){
+
         console.log(markerData[x].name + ' getJSON error');
+
     });
 
 }
@@ -70,7 +75,12 @@ function initMap(){
         });
 
         // add info window
-        var contentString = '<div>Hello</div>';
+        var venue = markerData[i].foursquareData.response.venue;
+        var contentString = '<div><h3>' + venue.name +
+        '</h3><div><span>Diner</span>, <span>Cafe</span>, <span>American Restaurant</span></div><div><span>' +
+        venue.location.formattedAddress[0] + '</span><span>' + venue.location.formattedAddress[1] +
+        '</span></div><div>Rating: <span>' + venue.rating + '</span>/10 Based on <span>' + venue.ratingSignals + 
+        '</span> votes</div></div>';
         var infoWindow = new google.maps.InfoWindow({
             content: contentString
         });
