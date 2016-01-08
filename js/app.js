@@ -17,10 +17,6 @@ var markerData = [
     position: {lat: 37.702610, lng: -122.470373}
 },
 {
-    name: 'Subway',
-    position: {lat: 37.701400, lng: -122.470252}
-},
-{
     name: 'Westlake Coffee Shop',
     position: {lat: 37.702359, lng: -122.470520}
 },
