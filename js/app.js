@@ -38,25 +38,22 @@ var populateMarkerData2 = function() {
 populateMarkerData2();
 
 // get foursquare data
-function loadData() {
+for (var x in markerData) {
 
     var url = 'https://api.foursquare.com/v2/venues/' +
-        markerData[0].foursquareID +
-        '?client_id=FNMHOGTDEWE10PGKTEBDW5IYWTXLFJKJFH4G232RV3ZEVCVO' +
-        '&client_secret=3PFR1W2WZYV5RAP3TSCCYUOXIE5CJSKJSPPFBJUXQDFKORH2' +
-        '&v=20160105';
+            markerData[x].foursquareID +
+            '?client_id=FNMHOGTDEWE10PGKTEBDW5IYWTXLFJKJFH4G232RV3ZEVCVO' +
+            '&client_secret=3PFR1W2WZYV5RAP3TSCCYUOXIE5CJSKJSPPFBJUXQDFKORH2' +
+            '&v=20160105';
 
     $.getJSON(url, function(data){
         console.log(data);
+        markerData[x].foursquareData = data;
     }).error(function(){
-        console.log('getJSON error');
+        console.log(markerData[x].name + ' getJSON error');
     });
 
-    //console.log(url);
-
 }
-
-loadData();
 
 function initMap(){
     map = new google.maps.Map(document.getElementById('map'), {
