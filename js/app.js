@@ -24,7 +24,7 @@ var markerData = [
     foursquareID: '531288f7498e077a666756fe'
 },
 {
-    name: 'Century 20 Daly City and XD',
+    name: 'Century 20 Daly City',
     position: {lat: 37.702155, lng: -122.470354},
     foursquareID: '4a10653af964a520b8761fe3'
 }
