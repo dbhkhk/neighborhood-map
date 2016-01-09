@@ -43,7 +43,7 @@ populateMarkerData2();
 function initMap(){
     map = new google.maps.Map(document.getElementById('map'), {
         center: myLatLng,
-        zoom: 17
+        zoom: 16
     });
 
     for (var i = 0; i < markerData.length; i++) {
@@ -96,6 +96,7 @@ var closeInfoWindows = function() {
     }
 };
 
+// use knockout view-model
 var myViewModel = {
     // data
     markers: ko.observableArray(markerData2),
