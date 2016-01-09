@@ -60,12 +60,12 @@ function initMap(){
             content: contentString
         });
         // use IIFE to deal with closure problem
-        marker.addListener('click', (function(markerCopy){
+        marker.addListener('click', (function(markerCopy, infoWindowCopy){
             return function() {
                 closeInfoWindows();
-                infoWindow.open(map, markerCopy);
+                infoWindowCopy.open(map, markerCopy);
             };
-        })(marker));
+        })(marker, infoWindow));
 
         // push marker into markers array
         markers.push(marker);
@@ -142,13 +142,14 @@ for (var x in markerData) {
         return function(data) {
             // use returned JSON here
             markerData[xCopy].foursquareData = data;
-            var venue = markerData[xCopy].foursquareData.response.venue;
+            var venue = data.response.venue;
             var contentString = '<div><h3>' + venue.name +
                 '</h3><div><span>Diner</span>, <span>Cafe</span>, <span>American Restaurant</span></div><div><span>' +
-                venue.location.formattedAddress[0] + '</span><span>' + venue.location.formattedAddress[1] +
+                venue.location.formattedAddress[0] + '</span>, <span>' + venue.location.formattedAddress[1] +
                 '</span></div><div>Rating: <span>' + venue.rating + '</span>/10 Based on <span>' + venue.ratingSignals + 
                 '</span> votes</div></div>';
-            console.log(xCopy, contentString);
+            console.log(contentString);
+            infoWindows[xCopy].content = contentString;
 
         }
     })(x)).error(function(){
