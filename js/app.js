@@ -143,11 +143,19 @@ for (var x in markerData) {
             // use returned JSON here
             markerData[xCopy].foursquareData = data;
             var venue = data.response.venue;
-            var contentString = '<div><h3>' + venue.name +
-                '</h3><div><span>Diner</span>, <span>Cafe</span>, <span>American Restaurant</span></div><div><span>' +
-                venue.location.formattedAddress[0] + '</span>, <span>' + venue.location.formattedAddress[1] +
-                '</span></div><div>Rating: <span>' + venue.rating + '</span>/10 Based on <span>' + venue.ratingSignals + 
-                '</span> votes</div></div>';
+            var contentString;
+            if (venue.rating !== undefined) {
+                contentString = '<div><h3>' + venue.name +
+                    '</h3><div><span>Diner</span>, <span>Cafe</span>, <span>American Restaurant</span></div><div><span>' +
+                    venue.location.formattedAddress[0] + '</span>, <span>' + venue.location.formattedAddress[1] +
+                    '</span></div><div>Rating: <span>' + venue.rating + '</span>/10 Based on <span>' + venue.ratingSignals + 
+                    '</span> votes</div></div>';
+            } else {
+                contentString = '<div><h3>' + venue.name +
+                    '</h3><div><span>Diner</span>, <span>Cafe</span>, <span>American Restaurant</span></div><div><span>' +
+                    venue.location.formattedAddress[0] + '</span>, <span>' + venue.location.formattedAddress[1] +
+                    '</span></div><div>Rating not available</div></div>';
+            }
             console.log(contentString);
             infoWindows[xCopy].content = contentString;
 
