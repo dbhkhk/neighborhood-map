@@ -37,28 +37,9 @@ var populateMarkerData2 = function() {
 };
 populateMarkerData2();
 
-// get foursquare data
-for (var x in markerData) {
 
-    var url = 'https://api.foursquare.com/v2/venues/' +
-            markerData[x].foursquareID +
-            '?client_id=FNMHOGTDEWE10PGKTEBDW5IYWTXLFJKJFH4G232RV3ZEVCVO' +
-            '&client_secret=3PFR1W2WZYV5RAP3TSCCYUOXIE5CJSKJSPPFBJUXQDFKORH2' +
-            '&v=20160105';
 
-    $.getJSON(url, (function(xCopy){ // IIFE
-        return function(data) {
-            console.log(data);
-            markerData[xCopy].foursquareData = data;
-        }
-    })(x)).error(function(){
-
-        console.log(markerData[x].name + ' getJSON error');
-
-    });
-
-}
-
+// init Google Map API
 function initMap(){
     map = new google.maps.Map(document.getElementById('map'), {
         center: myLatLng,
@@ -73,13 +54,8 @@ function initMap(){
             title: markerData[i].name
         });
 
-        // add info window
-        var venue = markerData[i].foursquareData.response.venue;
-        var contentString = '<div><h3>' + venue.name +
-        '</h3><div><span>Diner</span>, <span>Cafe</span>, <span>American Restaurant</span></div><div><span>' +
-        venue.location.formattedAddress[0] + '</span><span>' + venue.location.formattedAddress[1] +
-        '</span></div><div>Rating: <span>' + venue.rating + '</span>/10 Based on <span>' + venue.ratingSignals + 
-        '</span> votes</div></div>';
+        // add info windows
+        var contentString = 'Hello';
         var infoWindow = new google.maps.InfoWindow({
             content: contentString
         });
@@ -91,11 +67,14 @@ function initMap(){
             };
         })(marker));
 
-        // push every marker into markers array
+        // push marker into markers array
         markers.push(marker);
+        // push infoWindow into infoWindows array
         infoWindows.push(infoWindow);
     };
 }
+
+
 
 // functions to toggle marker's visibility
 var toggleOff = function(marker) {
@@ -149,3 +128,33 @@ var myViewModel = {
 ko.applyBindings(myViewModel);
 
 myViewModel.searchValue.subscribe(myViewModel.search);
+
+// get foursquare data
+for (var x in markerData) {
+
+    var url = 'https://api.foursquare.com/v2/venues/' +
+            markerData[x].foursquareID +
+            '?client_id=FNMHOGTDEWE10PGKTEBDW5IYWTXLFJKJFH4G232RV3ZEVCVO' +
+            '&client_secret=3PFR1W2WZYV5RAP3TSCCYUOXIE5CJSKJSPPFBJUXQDFKORH2' +
+            '&v=20160105';
+
+    $.getJSON(url, (function(xCopy){ // IIFE
+        return function(data) {
+            // use returned JSON here
+            markerData[xCopy].foursquareData = data;
+            var venue = markerData[xCopy].foursquareData.response.venue;
+            var contentString = '<div><h3>' + venue.name +
+                '</h3><div><span>Diner</span>, <span>Cafe</span>, <span>American Restaurant</span></div><div><span>' +
+                venue.location.formattedAddress[0] + '</span><span>' + venue.location.formattedAddress[1] +
+                '</span></div><div>Rating: <span>' + venue.rating + '</span>/10 Based on <span>' + venue.ratingSignals + 
+                '</span> votes</div></div>';
+            console.log(xCopy, contentString);
+
+        }
+    })(x)).error(function(){
+
+        console.log(markerData[x].name + ' getJSON error');
+
+    });
+
+}
