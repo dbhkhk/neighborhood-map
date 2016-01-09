@@ -146,15 +146,15 @@ for (var x in markerData) {
             var venue = data.response.venue;
 
             // create contentString
-            var contentString0 = '<div><h3>' + venue.name + '</h3><div>';
+            var contentString0 = '<div><h4>' + venue.name + '</h4><h5>';
             var contentString2;
             if (venue.rating !== undefined) {
-                contentString2 = '</div><div><span>' + venue.location.formattedAddress[0] + '</span>, <span>' +
-                    venue.location.formattedAddress[1] + '</span></div><div>Rating: <span>' + venue.rating +
+                contentString2 = '</h5><div><span>' + venue.location.formattedAddress[0] + '</span>, <span>' +
+                    venue.location.formattedAddress[1] + '</span></div><br><div>Rating: <span>' + venue.rating +
                     '</span>/10 Based on <span>' + venue.ratingSignals + '</span> votes</div></div>';
             } else {
-                contentString2 = '</div><div><span>' + venue.location.formattedAddress[0] + '</span>, <span>' +
-                    venue.location.formattedAddress[1] + '</span></div><div>Rating not available</div></div>';
+                contentString2 = '</h5><div><span>' + venue.location.formattedAddress[0] + '</span>, <span>' +
+                    venue.location.formattedAddress[1] + '</span></div><br><div>Rating not available</div></div>';
             }
             var contentString1 = '';
             var categories = venue.categories;
