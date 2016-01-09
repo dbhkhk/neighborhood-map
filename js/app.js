@@ -164,7 +164,6 @@ for (var x in markerData) {
             // delete last two positions of contentString1
             contentString1 = contentString1.slice(0, -2);
 
-            console.log(contentString1);
             var contentString = contentString0 + contentString1 + contentString2;
 
             // change info windows' content

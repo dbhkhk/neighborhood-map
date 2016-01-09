@@ -12,9 +12,9 @@
         <div class="container-fluid">
             <div class="col-md-2">
                 <input class="form-control upspace" placeholder="Search…" type="search" autocomplete="off" data-bind="value: searchValue, valueUpdate: 'keyup'">
-                <ul data-bind="foreach: markers">
-                    <li><a href="#" data-bind="text: name, click: $root.listClick"></a></li>
-                </ul>
+                <div class="list-group" data-bind="foreach: markers">
+                    <a class="list-group-item" href="#" data-bind="text: name, click: $root.listClick"></a>
+                </div>
             </div>
             <div id='map' class="col-md-10"></div>
         </div>
