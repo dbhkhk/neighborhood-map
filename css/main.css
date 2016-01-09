@@ -1,5 +1,10 @@
 html, body {height: 100%; margin: 0; padding: 0;}
 
+a:hover {
+    text-decoration: none;
+    background-color: lightgreen;
+}
+
 #map {height: 100%;}
 
 .float {position: absolute; top: 50px; left: 10px; z-index: 1; background-color: #fff; padding: 10px;}
