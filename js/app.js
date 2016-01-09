@@ -143,20 +143,30 @@ for (var x in markerData) {
             // use returned JSON here
             markerData[xCopy].foursquareData = data;
             var venue = data.response.venue;
-            var contentString;
+
+            // create contentString
+            var contentString0 = '<div><h3>' + venue.name + '</h3><div>';
+            var contentString2;
             if (venue.rating !== undefined) {
-                contentString = '<div><h3>' + venue.name +
-                    '</h3><div><span>Diner</span>, <span>Cafe</span>, <span>American Restaurant</span></div><div><span>' +
-                    venue.location.formattedAddress[0] + '</span>, <span>' + venue.location.formattedAddress[1] +
-                    '</span></div><div>Rating: <span>' + venue.rating + '</span>/10 Based on <span>' + venue.ratingSignals + 
-                    '</span> votes</div></div>';
+                contentString2 = '</div><div><span>' + venue.location.formattedAddress[0] + '</span>, <span>' +
+                    venue.location.formattedAddress[1] + '</span></div><div>Rating: <span>' + venue.rating +
+                    '</span>/10 Based on <span>' + venue.ratingSignals + '</span> votes</div></div>';
             } else {
-                contentString = '<div><h3>' + venue.name +
-                    '</h3><div><span>Diner</span>, <span>Cafe</span>, <span>American Restaurant</span></div><div><span>' +
-                    venue.location.formattedAddress[0] + '</span>, <span>' + venue.location.formattedAddress[1] +
-                    '</span></div><div>Rating not available</div></div>';
+                contentString2 = '</div><div><span>' + venue.location.formattedAddress[0] + '</span>, <span>' +
+                    venue.location.formattedAddress[1] + '</span></div><div>Rating not available</div></div>';
             }
-            console.log(contentString);
+            var contentString1 = '';
+            var categories = venue.categories;
+            for (var i=0; i < categories.length; i++) {
+                contentString1 += '<span>' + categories[i].name + '</span>, ';
+            }
+            // delete last two positions of contentString1
+            contentString1 = contentString1.slice(0, -2);
+
+            console.log(contentString1);
+            var contentString = contentString0 + contentString1 + contentString2;
+
+            // change info windows' content
             infoWindows[xCopy].content = contentString;
 
         }
