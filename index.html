@@ -11,7 +11,7 @@
     <body>
         <div class="container-fluid">
             <div class="col-md-2">
-                <input placeholder="Search…" type="search" autocomplete="off" data-bind="value: searchValue, valueUpdate: 'keyup'">
+                <input class="form-control upspace" placeholder="Search…" type="search" autocomplete="off" data-bind="value: searchValue, valueUpdate: 'keyup'">
                 <ul data-bind="foreach: markers">
                     <li><a href="#" data-bind="text: name, click: $root.listClick"></a></li>
                 </ul>
