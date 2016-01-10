@@ -37,7 +37,7 @@ var populateMarkerData2 = function() {
 };
 populateMarkerData2();
 
-// use Yelp API
+/*// use Yelp API
 var yelpData = [];
 var yelpURLWithKeys = yelpURL + '/?' + 'oauth_consumer_key=' + parameters.oauth_consumer_key +
     '&oauth_token=' + parameters.oauth_token + '&oauth_signature_method=' + parameters.oauth_signature_method +
@@ -49,7 +49,7 @@ $.ajax(yelpURLWithKeys, {
     success: function(data){
         console.log(data);
     }
-});
+});*/
 
 
 function initMap(){
