@@ -2,11 +2,9 @@ function nonce_generate() {
   return (Math.floor(Math.random() * 1e12).toString());
 }
 
-var yelp_url = 'https://api.yelp.com/v2/search?';
+var yelp_url = 'https://api.yelp.com/v2/business/boulevard-cafe-daly-city';
 
   var parameters = {
-    term: 'food',
-    location: 'chicago',
     oauth_consumer_key: 'Yq5tVYmWeWxenLRN6gY-1g',
     oauth_token: 'iIhG_zwkm6hF77CXNNifSiohRlnmNfmZ',
     oauth_nonce: nonce_generate(),
@@ -26,7 +24,6 @@ var yelp_url = 'https://api.yelp.com/v2/search?';
     data: parameters,
     cache: true,                // This is crucial to include as well to prevent jQuery from adding on a cache-buster parameter "_=23489489749837", invalidating our oauth-signature
     dataType: 'jsonp',
-    jsonpCallback: 'cb',
     success: function(results) {
       // Do stuff with results
       console.log("SUCCCESS! %o", results);
