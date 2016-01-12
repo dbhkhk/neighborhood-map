@@ -46,6 +46,7 @@ function initMap(){
         zoom: 17
     });
 
+    // create markers and info windows
     for (var i = 0; i < markerData.length; i++) {
         // create marker
         var marker = new google.maps.Marker({
@@ -64,6 +65,8 @@ function initMap(){
             return function() {
                 closeInfoWindows();
                 infoWindowCopy.open(map, markerCopy);
+                toggleBounceOffAll();
+                toggleBounceOn(markerCopy);
             };
         })(marker, infoWindow));
 
@@ -94,6 +97,17 @@ var closeInfoWindows = function() {
     for (var x in infoWindows) {
         infoWindows[x].close();
     }
+};
+
+// function to toggle all markers' BOUNCE animation off
+var toggleBounceOffAll = function() {
+    for (var x in markers) {
+        markers[x].setAnimation(null);
+    }
+};
+
+var toggleBounceOn = function(marker) {
+    marker.setAnimation(google.maps.Animation.BOUNCE);
 };
 
 // use knockout view-model
