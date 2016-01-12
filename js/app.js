@@ -130,11 +130,14 @@ var myViewModel = {
         }
     },
     listClick: function(value) {
-        // close all info windows
+        // close all info windows, toggle all bounce animation off
         closeInfoWindows();
+        toggleBounceOffAll();
         for (var x in markerData) {
             if (markerData[x].name.toLowerCase().indexOf(value.name.toLowerCase()) >= 0) {
+                //open info window and toggle bounce animation on for the clicked
                 infoWindows[x].open(map, markers[x]);
+                toggleBounceOn(markers[x]);
             }
         }
     }
