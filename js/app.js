@@ -56,7 +56,7 @@ function initMap(){
         });
 
         // add info windows
-        var contentString = 'Hello';
+        var contentString = 'I\'m sorry, the data can\'t be loaded now.';
         var infoWindow = new google.maps.InfoWindow({
             content: contentString
         });
@@ -187,9 +187,9 @@ for (var x in markerData) {
             infoWindows[xCopy].content = contentString;
 
         }
-    })(x)).error(function(){
+    })(x)).fail(function(){
 
-        console.log(markerData[x].name + ' getJSON error');
+        console.log('getJSON error');
 
     });
 
