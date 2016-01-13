@@ -1,7 +1,10 @@
+// vars for google maps API
 var map;
 var markers = [];
 var infoWindows = [];
 var myLatLng = {lat: 37.703383, lng: -122.472916};
+
+// local data
 var markerData = [
 {
     name: 'Boulevard Cafe',
@@ -29,6 +32,8 @@ var markerData = [
     foursquareID: '4a10653af964a520b8761fe3'
 }
 ];
+
+// markerData2 is for creating myViewModel.markers (an observable array), so when it get cleared, markerData remains for later use
 var markerData2 = [];
 var populateMarkerData2 = function() {
     for (var x in markerData) {
@@ -56,7 +61,7 @@ function initMap(){
         });
 
         // add info windows
-        var contentString = 'I\'m sorry, the data can\'t be loaded now.';
+        var contentString = 'I\'m sorry, the data can\'t be loaded now.'; // this message will be displayed if later AJAX requests fail
         var infoWindow = new google.maps.InfoWindow({
             content: contentString
         });
@@ -99,7 +104,7 @@ var closeInfoWindows = function() {
     }
 };
 
-// function to toggle all markers' BOUNCE animation off
+// functions to toggle markers' BOUNCE animation
 var toggleBounceOffAll = function() {
     for (var x in markers) {
         markers[x].setAnimation(null);
@@ -110,7 +115,7 @@ var toggleBounceOn = function(marker) {
     marker.setAnimation(google.maps.Animation.BOUNCE);
 };
 
-// use knockout view-model
+// knockout view-model
 var myViewModel = {
     // data
     markers: ko.observableArray(markerData2),
@@ -133,6 +138,7 @@ var myViewModel = {
         // close all info windows, toggle all bounce animation off
         closeInfoWindows();
         toggleBounceOffAll();
+
         for (var x in markerData) {
             if (markerData[x].name.toLowerCase().indexOf(value.name.toLowerCase()) >= 0) {
                 //open info window and toggle bounce animation on for the clicked
@@ -187,7 +193,7 @@ for (var x in markerData) {
             infoWindows[xCopy].content = contentString;
 
         }
-    })(x)).fail(function(){
+    })(x)).fail(function(){ // error handling
 
         console.log('getJSON error');
 
