@@ -202,7 +202,7 @@ for (var x in markerData) {
     })(x)).fail(function(){ // error handling
         if (alertCount === true) {
         alert("Sorry, some data can't be loaded now. Please try later.");
-        alertCount = false;
+        alertCount = false; // make sure it only alert once
         }
     });
 
