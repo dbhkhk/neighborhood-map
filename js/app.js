@@ -158,6 +158,8 @@ ko.applyBindings(myViewModel);
 
 myViewModel.searchValue.subscribe(myViewModel.search);
 
+var alertCount = true;
+
 // get foursquare data
 for (var x in markerData) {
 
@@ -167,7 +169,6 @@ for (var x in markerData) {
             '&client_secret=3PFR1W2WZYV5RAP3TSCCYUOXIE5CJSKJSPPFBJUXQDFKORH2' +
             '&v=20160105';
 
-    var alertCount = true;
     $.getJSON(url, (function(xCopy){ // IIFE
         return function(data) {
             // use returned JSON here
@@ -207,3 +208,8 @@ for (var x in markerData) {
     });
 
 }
+
+var googleError = function() {
+    alert("Sorry, Google Maps API can't be loaded now. Please try later.");
+    alertCount = false;
+};
