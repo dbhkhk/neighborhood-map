@@ -47,9 +47,14 @@ populateMarkerData2();
 // init Google Map API
 function initMap(){
     map = new google.maps.Map(document.getElementById('map'), {
-        center: myLatLng,
-        zoom: 17
+        // because fitBounds is used later, these parameters are not necessary
+        /*center: myLatLng,
+        zoom: 17*/
     });
+    map.fitBounds({ east: -122.470354,
+                    north: 37.704003,
+                    south: 37.702155,
+                    west: -122.475802});
 
     // create markers and info windows
     for (var i = 0; i < markerData.length; i++) {
