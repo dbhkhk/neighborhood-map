@@ -66,7 +66,7 @@ function initMap(){
         });
 
         // add info windows
-        var contentString = 'I\'m sorry, the data can\'t be loaded now.'; // this message will be displayed if later AJAX requests fail
+        var contentString = "I'm sorry, the data can't be loaded now."; // this message will be displayed if later AJAX requests fail
         var infoWindow = new google.maps.InfoWindow({
             content: contentString
         });
@@ -84,7 +84,7 @@ function initMap(){
         markers.push(marker);
         // push infoWindow into infoWindows array
         infoWindows.push(infoWindow);
-    };
+    }
 }
 
 
@@ -161,12 +161,13 @@ myViewModel.searchValue.subscribe(myViewModel.search);
 // get foursquare data
 for (var x in markerData) {
 
-    var url = 'https://api.foursquare.com/v2/venues/' +
+    var url = 'https://api.foursquare.dfewcom/v2/venues/' +
             markerData[x].foursquareID +
             '?client_id=FNMHOGTDEWE10PGKTEBDW5IYWTXLFJKJFH4G232RV3ZEVCVO' +
             '&client_secret=3PFR1W2WZYV5RAP3TSCCYUOXIE5CJSKJSPPFBJUXQDFKORH2' +
             '&v=20160105';
 
+    var alertCount = true;
     $.getJSON(url, (function(xCopy){ // IIFE
         return function(data) {
             // use returned JSON here
@@ -197,11 +198,12 @@ for (var x in markerData) {
             // change info windows' content
             infoWindows[xCopy].content = contentString;
 
-        }
+        };
     })(x)).fail(function(){ // error handling
-
-        console.log('getJSON error');
-
+        if (alertCount === true) {
+        alert("Sorry, some data can't be loaded now. Please try later.");
+        alertCount = false;
+        }
     });
 
 }
