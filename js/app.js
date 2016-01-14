@@ -161,7 +161,7 @@ myViewModel.searchValue.subscribe(myViewModel.search);
 // get foursquare data
 for (var x in markerData) {
 
-    var url = 'https://api.foursquare.dfewcom/v2/venues/' +
+    var url = 'https://api.foursquare.com/v2/venues/' +
             markerData[x].foursquareID +
             '?client_id=FNMHOGTDEWE10PGKTEBDW5IYWTXLFJKJFH4G232RV3ZEVCVO' +
             '&client_secret=3PFR1W2WZYV5RAP3TSCCYUOXIE5CJSKJSPPFBJUXQDFKORH2' +
